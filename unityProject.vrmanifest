@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.vrhomework.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\DStudio\\Unity\\VR Homework\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "VR Homework [Testing]"
+        }
+      }
+    }
+  ]
+}
