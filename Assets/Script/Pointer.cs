@@ -21,7 +21,7 @@ public class Pointer : MonoBehaviour
 
     private void Update()
     {
-        SetWheel(true);
+        SetWheel(!GameManager.Instance.IsJoinedRoom);
         UpdataLine();
     }
 
@@ -67,13 +67,17 @@ public class Pointer : MonoBehaviour
         }
     }
 
+    public void SetColor(Color color)
+    {
+        m_LineRenderer.startColor = color;
+        m_LineRenderer.endColor = color;
+    }
 
-    private RaycastHit CreateRaycast(float length)
+    public RaycastHit CreateRaycast(float length)
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
         Physics.Raycast(ray, out hit, defaultLength);
-
         return hit;
     }
 }

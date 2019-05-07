@@ -1969,13 +1969,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ad41985979dd444a49fd6e77e4e82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action:
+  triggerAction:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  teleportAction:
+    actionPath: /actions/default/in/Teleport
     needsReinit: 0
   inputModule: {fileID: 185187656}
   leftHand: {fileID: 904975112}
   rightHand: {fileID: 1329605997}
   pointers: {fileID: 596989812}
+  player: {fileID: 2039868825}
 --- !u!1 &1410519720
 GameObject:
   m_ObjectHideFlags: 0

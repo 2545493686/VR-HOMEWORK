@@ -12,19 +12,23 @@ public enum HandType
 
 public class GameManager : MonoBehaviour
 {
-    public SteamVR_Action_Boolean action = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");
+    public SteamVR_Action_Boolean triggerAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");
+    public SteamVR_Action_Boolean teleportAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Teleport");
     public VRInputModule inputModule;
     public Hand leftHand;
     public Hand rightHand;
     public Pointer pointers;
+    public Player player;
 
     public static GameManager Instance { get; private set; }
     public HandType HandType { get; private set; }
+    public bool IsJoinedRoom { get; private set; }
 
-    bool m_LeftWheelFlag = false, m_IsJoinRoom = false;
+    bool m_LeftWheelFlag = false;
 
     private void Awake()
     {
+        IsJoinedRoom = false;
         Instance = this;
     }
 
@@ -39,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var hand in Player.instance.hands)
         {
-            if (action.GetState(hand.handType))
+            if (triggerAction.GetStateDown(hand.handType) || teleportAction.GetStateDown(hand.handType))
             {
                 pointers.ResetWheel();
 
@@ -65,12 +69,11 @@ public class GameManager : MonoBehaviour
     public void JoinRoom()
     {
         SceneManager.LoadScene(1);
-        m_IsJoinRoom = true;
+        IsJoinedRoom = true;
 
         pointers.ResetWheel();
-        pointers.gameObject.SetActive(false);
+        //pointers.gameObject.SetActive(false);
     }
-
 
     public Hand GetHand()
     {
